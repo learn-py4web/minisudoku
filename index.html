@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kitchen Timer</title>
+    <title>Mini Sudoku</title>
     <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
 </head>
@@ -13,6 +13,19 @@
 
     <section class="section" id="app">
         <div class="container">
+            <div class="has-text-centered is-centered">
+                <table class="table" @focusout="stop_edit">
+                    <tr v-for="j in [0, 1, 2]">
+                        <td v-for="i in [0, 1, 2]" @click="start_edit(j, i)">
+                            <span v-if="editing[j][i]">
+                                <input class="is-narrow" type="number" v-model="values[j][i]">
+                            </span>
+                            <span v-else>{{values[j][i]}}</span>
+                        </td>
+                    </tr>
+                </table>
+                <div class="has-text-danger" v-if="!is_valid">Error in values</div>
+            </div>
         </div>
     </section>
 
