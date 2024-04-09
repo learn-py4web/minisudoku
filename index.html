@@ -12,21 +12,21 @@
 <body>
 
     <section class="section" id="app">
-        <div class="container">
-            <div class="has-text-centered is-centered">
-                <table class="table" @focusout="stop_edit">
+            <div style="display: flex; justify-content: center;">
+                <table class="table is-centered" @focusout="stop_edit">
                     <tr v-for="j in [0, 1, 2]">
-                        <td v-for="i in [0, 1, 2]" @click="start_edit(j, i)">
-                            <span v-if="editing[j][i]">
-                                <input class="is-narrow" type="number" v-model="values[j][i]">
+                        <td v-for="i in [0, 1, 2]">
+                            <span>
+                                <input class="input" size="1" v-model="values[j][i]" :readonly="!editing[j][i]" :class="{'is-static': !editing[j][i]}" @click="start_edit(j, i)">
                             </span>
-                            <span v-else>{{values[j][i]}}</span>
                         </td>
                     </tr>
                 </table>
-                <div class="has-text-danger" v-if="!is_valid">Error in values</div>
             </div>
-        </div>
+            <div style="display: flex; justify-content: center;">
+                <div class="has-text-success" v-if="is_valid">The values are valid</div>   
+                <div class="has-text-danger" v-else>Error in values</div>
+            </div>
     </section>
 
     <footer class="footer">

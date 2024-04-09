@@ -25,6 +25,7 @@ app.data = {
                     this.editing[j][i] = false;
                 }
             }
+            this.check_table();
         },
         check_table: function() {
             for (let j = 0; j < 3; j++) {
